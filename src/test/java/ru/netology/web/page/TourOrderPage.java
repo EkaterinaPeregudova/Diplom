@@ -1,6 +1,9 @@
 package ru.netology.web.page;
 
 import com.codeborne.selenide.SelenideElement;
+import ru.netology.web.data.DataGenerator;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -29,4 +32,26 @@ public class TourOrderPage {
     public TourOrderPage() {
         heading.shouldBe(visible);
     }
+
+    public void purchase(DataGenerator.CardInfo card) {
+        purchasePayment.click();
+        paymentDashboard.shouldBe(visible, Duration.ofSeconds(4));
+        cardNumber.setValue(card.getCardNumber());
+        monthExpire.setValue(card.getMonthExpired());
+        yearExpire.setValue(card.getYearExpired());
+        owner.setValue(card.getOwnerName());
+        cvc.setValue(card.getCvc());
+        submit.click();
+    }
+
+    public void approved() {
+        request.shouldBe(visible, Duration.ofSeconds(4));
+        approvedPurchase.shouldBe(visible, Duration.ofSeconds(10));
+    }
+
+    public void declined() {
+        request.shouldBe(visible, Duration.ofSeconds(4));
+        declinedPurchase.shouldBe(visible, Duration.ofSeconds(10));
+    }
+
 }
