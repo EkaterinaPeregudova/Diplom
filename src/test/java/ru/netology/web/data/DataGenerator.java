@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Data
 public class DataGenerator {
     @Value
     public static class CardInfo {
@@ -17,7 +18,7 @@ public class DataGenerator {
     }
 
     public static String[] getFakes() {
-        String[] data = new String[4];
+        String[] data = new String[5];
         val faker = new Faker();
         data[0] = faker.business().creditCardNumber();                                      //получаем номер карты
         data[1] = LocalDate.now().plusMonths(4).format(DateTimeFormatter.ofPattern("MM"));  //получаем месяц карты

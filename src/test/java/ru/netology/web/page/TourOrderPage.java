@@ -54,4 +54,23 @@ public class TourOrderPage {
         declinedPurchase.shouldBe(visible, Duration.ofSeconds(10));
     }
 
+    public void wrongMonth() {
+        request.shouldNotBe(visible, Duration.ofSeconds(4));
+        wrongMonthError.shouldBe(visible, Duration.ofSeconds(3));
+    }
+
+    public void wrongYear() {
+        request.shouldNotBe(visible, Duration.ofSeconds(4));
+        wrongYearError.shouldBe(visible, Duration.ofSeconds(3));
+    }
+
+    public void wrongName() {
+        request.shouldNotBe(visible, Duration.ofSeconds(4));
+        wrongNameError.shouldBe(visible, Duration.ofSeconds(3));
+    }
+
+    public void emptyField() {
+        request.shouldNotBe(visible, Duration.ofSeconds(4));
+        emptyFieldError.shouldBe(visible, Duration.ofSeconds(3));
+    }
 }
