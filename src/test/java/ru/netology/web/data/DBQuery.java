@@ -17,7 +17,7 @@ public class DBQuery {
     private static Connection getConnect() {
 
         return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/app",
+                System.getProperty("url"),
                 "app",
                 "pass"
         );
