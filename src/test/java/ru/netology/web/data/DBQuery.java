@@ -48,4 +48,22 @@ public class DBQuery {
         return runner.query(conn, query, new ScalarHandler<>());
     }
 
+    @SneakyThrows
+    public static String getLastCreditStatus() {
+        val query = "SELECT status FROM credit_request_entity ORDER BY created DESC";
+        return runner.query(conn, query, new ScalarHandler<>());
+    }
+
+    @SneakyThrows
+    public static String getLastCreditId() {
+        val query = "SELECT bank_id FROM credit_request_entity ORDER BY created DESC";
+        return runner.query(conn, query, new ScalarHandler<>());
+    }
+
+    @SneakyThrows
+    public static String getLastOrderCreditId() {
+        val query = "SELECT credit_id FROM order_entity ORDER BY created DESC";
+        return runner.query(conn, query, new ScalarHandler<>());
+    }
+
 }

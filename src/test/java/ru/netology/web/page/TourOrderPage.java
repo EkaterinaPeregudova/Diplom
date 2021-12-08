@@ -44,6 +44,17 @@ public class TourOrderPage {
         submit.click();
     }
 
+    public void credit(DataGenerator.CardInfo card) {
+        purchaseCredit.click();
+        creditDashboard.shouldBe(visible, Duration.ofSeconds(4));
+        cardNumber.setValue(card.getCardNumber());
+        monthExpire.setValue(card.getMonthExpired());
+        yearExpire.setValue(card.getYearExpired());
+        owner.setValue(card.getOwnerName());
+        cvc.setValue(card.getCvc());
+        submit.click();
+    }
+
     public void approved() {
         request.shouldBe(visible, Duration.ofSeconds(4));
         approvedPurchase.shouldBe(visible, Duration.ofSeconds(10));
