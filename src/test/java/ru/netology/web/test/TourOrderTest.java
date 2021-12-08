@@ -1,5 +1,7 @@
 package ru.netology.web.test;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
 import org.junit.jupiter.api.*;
 import ru.netology.web.page.TourOrderPage;
@@ -13,6 +15,12 @@ public class TourOrderTest {
     private TourOrderPage orderPage;
     private int purchasePrice = 45000;
     private CardInfo fakeCard = getFakeCard();
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
+    }
 
     @BeforeEach
     void setUp() {
@@ -149,4 +157,10 @@ public class TourOrderTest {
         assertEquals(lastOrderPaymentId, getLastOrderPaymentId());
         orderPage.emptyField();
     }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
+
 }

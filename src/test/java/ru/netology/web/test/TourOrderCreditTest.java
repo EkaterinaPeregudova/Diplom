@@ -1,5 +1,7 @@
 package ru.netology.web.test;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
 import org.junit.jupiter.api.*;
 import ru.netology.web.data.DataGenerator;
@@ -13,6 +15,12 @@ import static ru.netology.web.data.DataGenerator.*;
 public class TourOrderCreditTest {
     private TourOrderPage orderPage;
     private DataGenerator.CardInfo fakeCard = getFakeCard();
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
+    }
 
     @BeforeEach
     void setUp() {
@@ -148,4 +156,10 @@ public class TourOrderCreditTest {
         assertEquals(lastCreditId, getLastOrderCreditId());
         orderPage.emptyField();
     }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
+
 }
