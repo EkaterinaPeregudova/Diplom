@@ -15,11 +15,11 @@ public class TourOrderPage {
     private SelenideElement paymentDashboard = $(withText("Оплата по карте"));
     private SelenideElement purchaseCredit = $(withText("Купить в кредит"));
     private SelenideElement creditDashboard = $(withText("Кредит по данным карты"));
-    private SelenideElement cardNumber = $$(".input__control").get(0);
-    private SelenideElement monthExpire = $$(".input__control").get(1);
-    private SelenideElement yearExpire = $$(".input__control").get(2);
-    private SelenideElement owner = $$(".input__control").get(3);
-    private SelenideElement cvc = $$(".input__control").get(4);
+    private SelenideElement cardNumber = $(withText("Номер карты")).sibling(0).$(".input__control");
+    private SelenideElement monthExpire = $(withText("Месяц")).sibling(0).$(".input__control");
+    private SelenideElement yearExpire = $(withText("Год")).sibling(0).$(".input__control");
+    private SelenideElement owner = $(withText("Владелец")).sibling(0).$(".input__control");
+    private SelenideElement cvc = $(withText("CVC/CVV")).sibling(0).$(".input__control");
     private SelenideElement submit = $(".form-field .button");
     private SelenideElement approvedPurchase = $(withText("Операция одобрена Банком."));
     private SelenideElement declinedPurchase = $(withText("Ошибка! Банк отказал в проведении операции."));
